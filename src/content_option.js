@@ -132,6 +132,7 @@ const datafeatured = [
         img: reloopThumb,
         description:
           "ReLoop: marketplace case study (Vientiane launch, Supabase, pickup-first)",
+        timeline: "Timeline: Ongoing Project",
         link: "/reloop",
         bg: "#F4F3EE",
     },
@@ -139,6 +140,7 @@ const datafeatured = [
         img: enbThumb,
         description:
           "eNotebook: AI learning notebook overview (STEM study strategies, tutor, artifacts)",
+        timeline: "Timeline: August 2023 - June 2026",
         link: "/enb",
         bg: "#F4F3EE",
     },
@@ -183,7 +185,7 @@ const datapersonal = [
     {   
         img:"https://i.ibb.co/ygvbhVM/resume-logo3.png",
         description: "Thank you for visiting my website😁! (P.S: The code for all the projects above can be found within my github repo)",
-        link: "https://drive.google.com/file/d/1-phsOJCYl2_4v1mIdI0vciAji6js31qm/view?usp=sharing"
+        link: "https://drive.google.com/file/d/103Lty0G6UOEyH7V7t0S03OD5w9RQnlnO/view?usp=sharing"
     },
 ];
 
@@ -191,7 +193,7 @@ const dataportfolio = [...datafeatured, ...datapersonal];
 
 const contactConfig = {
   YOUR_EMAIL: "tobythaung@gmail.com",
-  YOUR_FONE: "(541)908-2749",
+  YOUR_FONE: "+1(541)908-2749",
   description: "Contact me via email or phone number!",
   // creat an emailjs.com account
   // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
