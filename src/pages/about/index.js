@@ -10,6 +10,7 @@ import {
   tools,
 } from "../../content_option";
 import useGoogleAnalytics from "../../hooks/useGoogleAnalytics ";
+import { WaveLink } from "../../components/wave-link";
 
 export const About = () => {
   useGoogleAnalytics('G-ZVC52HVG8Q')
@@ -30,16 +31,13 @@ export const About = () => {
         <Row className="sec_sp">
             <div style={{fontSize:'1.8rem'}}>
               {dataabout.aboutme}
-              {/* <p>{dataabout.aboutme} * ' 
-                <span> 
-                  <a target='_blank' href='http://54.70.119.142:3000/'>Virtual Notebook</a>' --- (Please refrain from putting in sensitive information. :D)
-                </span>
-              </p> */}
             </div>
         </Row>
         <Row className=" sec_sp">
           <Col lg="5">
-            <h3 className="color_sec py-4" style={{fontSize:'2rem'}}>Work Timeline</h3>
+            <h3 className="color_sec py-4" style={{fontSize:'2rem'}}>
+              <WaveLink to="/work-timeline">Work Timeline</WaveLink>
+            </h3>
           </Col>
           <Col lg="7">
             <table className="table caption-top">

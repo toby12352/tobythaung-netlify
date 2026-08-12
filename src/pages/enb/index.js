@@ -2,11 +2,18 @@ import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { meta } from "../../content_option";
 import useGoogleAnalytics from "../../hooks/useGoogleAnalytics ";
 import { usePageToc } from "../../hooks/usePageToc";
 import { PageTocDesktop, PageTocMobile } from "../../components/page-toc";
+import { PageBreadcrumb } from "../../components/page-breadcrumb";
+import { WaveLink } from "../../components/wave-link";
+import {
+  extendNavTrail,
+  navState,
+  resolveNavTrail,
+} from "../../utils/navTrail";
 
 const TOC_ITEMS = [
   { id: "enb-problem", label: "The Problem" },
@@ -18,6 +25,15 @@ const TOC_ITEMS = [
 export const Enb = () => {
   useGoogleAnalytics("G-ZVC52HVG8Q");
   const toc = usePageToc(TOC_ITEMS);
+  const location = useLocation();
+  const trail = resolveNavTrail(location, "my-work");
+  const developerState = navState(
+    extendNavTrail(
+      location,
+      { label: "eNotebook", to: "/enb" },
+      "my-work"
+    )
+  );
 
   return (
     <HelmetProvider>
@@ -30,14 +46,7 @@ export const Enb = () => {
 
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <nav className="page-breadcrumb" aria-label="Breadcrumb">
-              <Link to="/my-work">My Work</Link>
-              <span className="page-breadcrumb-sep" aria-hidden="true">
-                {" "}
-                &gt;{" "}
-              </span>
-              <span>eNotebook</span>
-            </nav>
+            <PageBreadcrumb trail={trail} current="eNotebook" />
             <h1 className="display-4 mb-4" style={{ fontSize: "3.8rem" }}>
               eNotebook
             </h1>
@@ -51,6 +60,13 @@ export const Enb = () => {
               eNotebook (eNb) is an AI-based personalized learning notebook that helps
               STEM students build study strategies - turning notes and tutor chat
               into study guides, flashcards, and practice assessments in one place.
+            </p>
+            <p className="enb-lead enb-lab-note">
+              eNotebook is a project of the{" "}
+              <WaveLink href="https://rad4stem.com/" className="wave-link--inline">
+                RAD4STEM
+              </WaveLink>{" "}
+              Education Research Lab at Oregon State University.
             </p>
           </Col>
         </Row>
@@ -75,7 +91,11 @@ export const Enb = () => {
                   <div className="ring three"></div>
                 </div>
               </a>
-              <Link to="/enb-developer-page" className="text_2">
+              <Link
+                to="/enb-developer-page"
+                state={developerState}
+                className="text_2"
+              >
                 <div
                   id="button_h"
                   className="ac_btn btn"
@@ -274,7 +294,10 @@ export const Enb = () => {
               <p className="enb-body">
                 For the engineering deep dive - streaming tutor chat, tool-driven
                 artifacts, sessions, and Stripe gating - open{" "}
-                <Link to="/enb-developer-page">eNotebook Developer News</Link>.
+                <Link to="/enb-developer-page" state={developerState}>
+                  eNotebook Developer News
+                </Link>
+                .
               </p>
             </section>
           </Col>

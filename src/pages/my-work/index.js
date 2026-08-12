@@ -5,6 +5,9 @@ import { Container, Row, Col } from "react-bootstrap";
 import { datafeatured, datapersonal, meta } from "../../content_option";
 import useGoogleAnalytics from "../../hooks/useGoogleAnalytics ";
 import { Link } from "react-router-dom";
+import { entryTrail, navState } from "../../utils/navTrail";
+
+const MY_WORK_STATE = navState(entryTrail("my-work"));
 
 const ProjectTiles = ({ items, keyPrefix }) => (
   <div className="po_list">
@@ -19,7 +22,7 @@ const ProjectTiles = ({ items, keyPrefix }) => (
         <div className="po_details">
           <p className="po_description">{data.description}</p>
           {data.link && data.link.startsWith("/") ? (
-            <Link to={data.link} className="po_btn">
+            <Link to={data.link} state={MY_WORK_STATE} className="po_btn">
               view
             </Link>
           ) : (

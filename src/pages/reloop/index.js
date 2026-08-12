@@ -2,11 +2,17 @@ import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { meta } from "../../content_option";
 import useGoogleAnalytics from "../../hooks/useGoogleAnalytics ";
 import { usePageToc } from "../../hooks/usePageToc";
 import { PageTocDesktop, PageTocMobile } from "../../components/page-toc";
+import { PageBreadcrumb } from "../../components/page-breadcrumb";
+import {
+  extendNavTrail,
+  navState,
+  resolveNavTrail,
+} from "../../utils/navTrail";
 
 import imgBigPicture from "../../assets/reloop/3) Big picture diagram (containers + data flow).png";
 import imgAnalysis from "../../assets/reloop/screenshots/analysis.png";
@@ -24,6 +30,11 @@ const TOC_ITEMS = [
 export const ReLoop = () => {
   useGoogleAnalytics("G-ZVC52HVG8Q");
   const toc = usePageToc(TOC_ITEMS);
+  const location = useLocation();
+  const trail = resolveNavTrail(location, "my-work");
+  const developerState = navState(
+    extendNavTrail(location, { label: "ReLoop", to: "/reloop" }, "my-work")
+  );
 
   return (
     <HelmetProvider>
@@ -36,14 +47,7 @@ export const ReLoop = () => {
 
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <nav className="page-breadcrumb" aria-label="Breadcrumb">
-              <Link to="/my-work">My Work</Link>
-              <span className="page-breadcrumb-sep" aria-hidden="true">
-                {" "}
-                &gt;{" "}
-              </span>
-              <span>ReLoop</span>
-            </nav>
+            <PageBreadcrumb trail={trail} current="ReLoop" />
             <h1 className="display-4 mb-4" style={{ fontSize: "3.8rem" }}>
               ReLoop
             </h1>
@@ -63,7 +67,11 @@ export const ReLoop = () => {
 
         <Row className="sec_sp">
           <Col lg="12">
-            <Link to="/reloop_developer_page" className="text_2">
+            <Link
+              to="/reloop_developer_page"
+              state={developerState}
+              className="text_2"
+            >
               <div id="button_p" className="ac_btn btn" style={{ fontSize: "1.5rem" }}>
                 Reloop Developer News
                 <div className="ring one"></div>

@@ -2,17 +2,20 @@ import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { meta } from "../../content_option";
 import useGoogleAnalytics from "../../hooks/useGoogleAnalytics ";
 import { usePageToc } from "../../hooks/usePageToc";
 import { PageTocDesktop, PageTocMobile } from "../../components/page-toc";
+import { PageBreadcrumb } from "../../components/page-breadcrumb";
+import { extendNavTrail, readNavTrail } from "../../utils/navTrail";
 
 import imgSystemContext from "../../assets/eNb/Diagram 1 System Context (top-level architecture).png";
 import imgStreamingTools from "../../assets/eNb/Diagram 2 Chat Streaming + Tool Orchestration (core AI tutor flow).png";
 import imgVoyagerArtifactGeneration from "../../assets/eNb/Diagram 3 Voyager Artifact Generation.png";
 
 const TOC_ITEMS = [
+  { id: "enb-dev-stack", label: "Tech stack" },
   { id: "enb-dev-context", label: "System Context" },
   { id: "enb-dev-architecture", label: "Core Architecture" },
   { id: "enb-dev-sessions", label: "Secure sessions" },
@@ -27,6 +30,10 @@ const TOC_ITEMS = [
 export const EnbDeveloperPage = () => {
   useGoogleAnalytics("G-ZVC52HVG8Q");
   const toc = usePageToc(TOC_ITEMS);
+  const location = useLocation();
+  const trail =
+    readNavTrail(location) ||
+    extendNavTrail(null, { label: "eNotebook", to: "/enb" }, "my-work");
 
   return (
     <HelmetProvider>
@@ -39,19 +46,7 @@ export const EnbDeveloperPage = () => {
 
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <nav className="page-breadcrumb" aria-label="Breadcrumb">
-              <Link to="/my-work">My Work</Link>
-              <span className="page-breadcrumb-sep" aria-hidden="true">
-                {" "}
-                &gt;{" "}
-              </span>
-              <Link to="/enb">eNotebook</Link>
-              <span className="page-breadcrumb-sep" aria-hidden="true">
-                {" "}
-                &gt;{" "}
-              </span>
-              <span>Developer News</span>
-            </nav>
+            <PageBreadcrumb trail={trail} current="Developer News" />
             <h1 className="display-4 mb-4" style={{ fontSize: "3.8rem" }}>
               eNb Developer News
             </h1>
@@ -73,6 +68,67 @@ export const EnbDeveloperPage = () => {
 
         <Row className="page-toc-content-row">
           <Col lg="9">
+            <section id="enb-dev-stack" className="sec_sp page-toc-section">
+              <h3 className="color_sec py-4 enb-h3" style={{ fontSize: "2rem" }}>
+                Tech stack
+              </h3>
+              <p className="enb-stack-intro">
+                React + Vite SPA talking to a Flask + Socket.IO backend on AWS,
+                with MongoDB, Stripe, S3, and OpenAI powering tutoring and
+                artifacts.
+              </p>
+
+              <div className="enb-stack-group">
+                <h4 className="enb-h4">Frontend</h4>
+                <ul className="enb-list">
+                  <li>
+                    React 18 + Vite 5 SPA (JavaScript/JSX), React Router 6, Tailwind
+                    CSS
+                  </li>
+                  <li>
+                    Socket.IO client for streaming chat; markdown, KaTeX, and
+                    Excalidraw for notes and study content
+                  </li>
+                </ul>
+              </div>
+
+              <div className="enb-stack-group">
+                <h4 className="enb-h4">Backend &amp; data</h4>
+                <ul className="enb-list">
+                  <li>
+                    Python 3 + Flask + Flask-SocketIO (Gunicorn / gevent in
+                    production)
+                  </li>
+                  <li>
+                    MongoDB; JWT auth (HTTP-only cookies), bcrypt, and rate
+                    limiting
+                  </li>
+                </ul>
+              </div>
+
+              <div className="enb-stack-group">
+                <h4 className="enb-h4">AI, payments &amp; storage</h4>
+                <ul className="enb-list">
+                  <li>
+                    OpenAI for chat, vision, and Whisper STT; Stripe for
+                    subscriptions; AWS S3 for media
+                  </li>
+                </ul>
+              </div>
+
+              <div className="enb-stack-group">
+                <h4 className="enb-h4">Repo &amp; shipping</h4>
+                <ul className="enb-list">
+                  <li>
+                    Separate frontend and backend repos; pnpm on the frontend
+                  </li>
+                  <li>
+                    GitHub Actions deploy to AWS EC2 (systemd)
+                  </li>
+                </ul>
+              </div>
+            </section>
+
             <section id="enb-dev-context" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 enb-h3" style={{ fontSize: "2rem" }}>
                 System Context

@@ -3,6 +3,10 @@
   color: var(--text-color);
 }
 
+.enb-lab-note {
+  margin-top: 0.75rem;
+}
+
 .sec_sp {
   margin-bottom: calc(0.8rem + 1vw);
 }

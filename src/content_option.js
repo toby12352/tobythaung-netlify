@@ -3,13 +3,13 @@ import enbThumb from "./assets/eNb/eNotebook Logo.png";
 
 const logotext = "TAT";
 const meta = {
-  title: "Tun Aung(Toby) Thaung",
+  title: "Tun Aung (Toby) Thaung",
   description:
     "Hello, I’m Toby, a software devloper, currently working for a research project in Oregon State University",
 };
 
 const introdata = {
-    title: "I’m Tun Aung(Toby) Thaung",
+    title: "I’m Tun Aung (Toby) Thaung",
     animated: {
         zero: "Full-Stack Developer",
         first: "Front-End Developer",
@@ -29,30 +29,50 @@ const dataabout = {
 
 const worktimeline = [
   {
-      jobtitle: "Freelance Full Stack/Mobile Developer",
-      where: "Portland, Oregon",
-      date: "June 2026 - Present",
+    jobtitle: "Freelance Full Stack/Mobile Developer",
+    where: "Portland, Oregon",
+    date: "June 2026 - Present",
+    detail:
+      "Building reliable web and mobile SaaS products for clients, from architecture through shipping. Currently working on a project called Reloop helping build a SaaS mobile application.",
+    learnMore: {
+      label: "learn more about Reloop",
+      to: "/reloop",
+      from: "work-timeline",
+    },
   },
-    {
-        jobtitle: "Lead Web Developer",
-        where: "Corvallis, Oregon",
-        date: "August 2024 - July 2026",
+  {
+    jobtitle: "Lead Web Developer",
+    where: "Corvallis, Oregon",
+    date: "August 2024 - July 2026",
+    detail:
+      "Led web development for Oregon State’s EECS department. Partnered with Corporate Relations to design event experiences for students and industry partners (Intel, NVIDIA, Meta, Boeing, and others); owned the full technical side for graduations, workshops, career fairs, and related programs.",
+  },
+  {
+    jobtitle: "Faculty Research Assistant",
+    where: "Corvallis, Oregon",
+    date: "August 2023 - June 2026",
+    detail:
+      "Supported research software and product work at Oregon State University under RAD4STEM education research lab. Worked on a project called eNotebook as one of the lead developers which turns into a SaaS mobile application that helps students learn and track their progress.",
+    learnMore: {
+      label: "learn more about eNotebook",
+      to: "/enb",
+      from: "work-timeline",
     },
-    {
-        jobtitle: "Faculty Research Assistant",
-        where: "Corvallis, Oregon",
-        date: "August 2023 - June 2026",
-    },
-    {
-        jobtitle: "Software Engineer Intern",
-        where: "Yangon, Myanmar",
-        date: "Jan 2023 - Jun 2023",
-    },
-    {
-        jobtitle: "Undergraduate Learning Assistant",
-        where: "Corvallis, Oregon",
-        date: "Jan 2023 - Jun 2023",
-    },
+  },
+  {
+    jobtitle: "Software Engineer Intern",
+    where: "Yangon, Myanmar",
+    date: "Jan 2023 - Jun 2023",
+    detail:
+      "Contributed to production engineering work as a software engineer intern, shipping features with the team.",
+  },
+  {
+    jobtitle: "Undergraduate Learning Assistant",
+    where: "Corvallis, Oregon",
+    date: "Jan 2023 - Jun 2023",
+    detail:
+      "Helped students with course material and assignments as an undergraduate learning assistant at Oregon State University.",
+  },
 ];
 
 const skills = [

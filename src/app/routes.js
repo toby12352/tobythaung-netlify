@@ -5,6 +5,7 @@ import { Home } from "../pages/home";
 import { MyWork } from "../pages/my-work";
 import { ContactUs } from "../pages/contact";
 import { About } from "../pages/about";
+import { WorkTimeline } from "../pages/work-timeline";
 import { ReLoop } from "../pages/reloop";
 import { ReLoopDeveloperPage } from "../pages/reloop_developer_page";
 import { Enb } from "../pages/enb";
@@ -23,9 +24,11 @@ const AnimatedRoutes = withRouter(({ location }) => {
     switch (path) {
       case "/my-work":
       case "/portfolio":
+      case "/about":
         return 1;
       case "/reloop":
       case "/enb":
+      case "/work-timeline":
         return 2;
       case "/reloop_developer_page":
       case "/enb-developer-page":
@@ -61,6 +64,7 @@ const AnimatedRoutes = withRouter(({ location }) => {
         <Routes location={location}>
           <Route exact path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/work-timeline" element={<WorkTimeline />} />
           <Route path="/my-work" element={<MyWork />} />
           <Route path="/portfolio" element={<MyWork />} />
           <Route path="/reloop" element={<ReLoop />} />

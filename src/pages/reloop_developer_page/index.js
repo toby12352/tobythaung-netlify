@@ -2,11 +2,13 @@ import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { meta } from "../../content_option";
 import useGoogleAnalytics from "../../hooks/useGoogleAnalytics ";
 import { usePageToc } from "../../hooks/usePageToc";
 import { PageTocDesktop, PageTocMobile } from "../../components/page-toc";
+import { PageBreadcrumb } from "../../components/page-breadcrumb";
+import { extendNavTrail, readNavTrail } from "../../utils/navTrail";
 
 import imgBigPicture from "../../assets/reloop/3) Big picture diagram (containers + data flow).png";
 import imgWorkflowToTables from "../../assets/reloop/6) Workflow-to-tables diagram (listing publishing).png";
@@ -14,6 +16,7 @@ import imgEditingVsCreate from "../../assets/reloop/6b) Editing vs create (smart
 import imgDevProcess from "../../assets/reloop/9) Development process stages (from domain  ship safely).png";
 
 const TOC_ITEMS = [
+  { id: "reloop-dev-stack", label: "Tech stack" },
   { id: "reloop-dev-context", label: "System Context" },
   { id: "reloop-dev-listing", label: "Listing create & edit" },
   { id: "reloop-dev-validation", label: "Validation & domain rules" },
@@ -28,6 +31,10 @@ const TOC_ITEMS = [
 export const ReLoopDeveloperPage = () => {
   useGoogleAnalytics("G-ZVC52HVG8Q");
   const toc = usePageToc(TOC_ITEMS);
+  const location = useLocation();
+  const trail =
+    readNavTrail(location) ||
+    extendNavTrail(null, { label: "ReLoop", to: "/reloop" }, "my-work");
 
   return (
     <HelmetProvider>
@@ -40,19 +47,7 @@ export const ReLoopDeveloperPage = () => {
 
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <nav className="page-breadcrumb" aria-label="Breadcrumb">
-              <Link to="/my-work">My Work</Link>
-              <span className="page-breadcrumb-sep" aria-hidden="true">
-                {" "}
-                &gt;{" "}
-              </span>
-              <Link to="/reloop">ReLoop</Link>
-              <span className="page-breadcrumb-sep" aria-hidden="true">
-                {" "}
-                &gt;{" "}
-              </span>
-              <span>Developer News</span>
-            </nav>
+            <PageBreadcrumb trail={trail} current="Developer News" />
             <h1 className="display-4 mb-4" style={{ fontSize: "3.8rem" }}>
               ReLoop Developer News
             </h1>
@@ -75,6 +70,65 @@ export const ReLoopDeveloperPage = () => {
 
         <Row className="page-toc-content-row">
           <Col lg="9">
+            <section id="reloop-dev-stack" className="sec_sp page-toc-section">
+              <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
+                Tech stack
+              </h3>
+              <p className="reloop-stack-intro">
+                One Expo app for customers and vendors, Supabase as the backend,
+                and Laos bank payments-no custom app servers.
+              </p>
+
+              <div className="reloop-stack-group">
+                <h4 className="reloop-h4">Mobile</h4>
+                <ul className="reloop-list">
+                  <li>
+                    Expo (SDK 56) + React Native + TypeScript, with Expo Router
+                    for customer and vendor flows in one app
+                  </li>
+                  <li>
+                    TanStack React Query for async state, Zod for validation,
+                    i18next for English + Lao
+                  </li>
+                </ul>
+              </div>
+
+              <div className="reloop-stack-group">
+                <h4 className="reloop-h4">Backend &amp; data</h4>
+                <ul className="reloop-list">
+                  <li>
+                    Supabase: Auth, Postgres with RLS (Singapore), Storage, and
+                    Edge Functions for payments, order push, and pickup reminders
+                  </li>
+                </ul>
+              </div>
+
+              <div className="reloop-stack-group">
+                <h4 className="reloop-h4">Payments</h4>
+                <ul className="reloop-list">
+                  <li>
+                    BCEL OnePay / PhaJay (bank-app style)-not Stripe in
+                    production
+                  </li>
+                </ul>
+              </div>
+
+              <div className="reloop-stack-group">
+                <h4 className="reloop-h4">Repo &amp; shipping</h4>
+                <ul className="reloop-list">
+                  <li>
+                    npm workspaces (<code>apps/mobile</code>,{" "}
+                    <code>packages/shared</code>, <code>supabase/</code>) with
+                    shared types and client
+                  </li>
+                  <li>
+                    EAS Build / Submit for iOS &amp; Android; Supabase CLI for
+                    migrations
+                  </li>
+                </ul>
+              </div>
+            </section>
+
             <section id="reloop-dev-context" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 System Context
