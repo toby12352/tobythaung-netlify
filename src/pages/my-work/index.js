@@ -46,7 +46,7 @@ export const MyWork = () => {
 
   return (
     <HelmetProvider>
-      <Container className="About-header">
+      <Container className="About-header my-work-page">
         <Helmet>
           <meta charSet="utf-8" />
           <title> My Work | {meta.title} </title>{" "}

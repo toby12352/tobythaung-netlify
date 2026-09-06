@@ -68,12 +68,24 @@ export const ReLoop = () => {
         <Row className="sec_sp">
           <Col lg="12">
             <Link
-              to="/reloop_developer_page"
+              to="/reloop-architecture"
               state={developerState}
               className="text_2"
             >
               <div id="button_p" className="ac_btn btn" style={{ fontSize: "1.5rem" }}>
-                Reloop Developer News
+                Architecture
+                <div className="ring one"></div>
+                <div className="ring two"></div>
+                <div className="ring three"></div>
+              </div>
+            </Link>
+            <Link
+              to="/recent-reloop-updates"
+              state={developerState}
+              className="text_2"
+            >
+              <div id="button_p" className="ac_btn btn" style={{ fontSize: "1.5rem" }}>
+                Recent Updates
                 <div className="ring one"></div>
                 <div className="ring two"></div>
                 <div className="ring three"></div>

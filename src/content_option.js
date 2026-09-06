@@ -204,7 +204,7 @@ const datapersonal = [
     },
     {   
         img:"https://i.ibb.co/ygvbhVM/resume-logo3.png",
-        description: "Thank you for visiting my website😁! (P.S: The code for all the projects above can be found within my github repo)",
+        description: "Thank you for visiting my website 😁!",
         link: "https://drive.google.com/file/d/103Lty0G6UOEyH7V7t0S03OD5w9RQnlnO/view"
     },
 ];

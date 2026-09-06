@@ -16,19 +16,19 @@ import imgEditingVsCreate from "../../assets/reloop/6b) Editing vs create (smart
 import imgDevProcess from "../../assets/reloop/9) Development process stages (from domain  ship safely).png";
 
 const TOC_ITEMS = [
-  { id: "reloop-dev-stack", label: "Tech stack" },
-  { id: "reloop-dev-context", label: "System Context" },
-  { id: "reloop-dev-listing", label: "Listing create & edit" },
-  { id: "reloop-dev-validation", label: "Validation & domain rules" },
-  { id: "reloop-dev-data", label: "Data architecture" },
-  { id: "reloop-dev-schema", label: "Schema evolution & safety" },
-  { id: "reloop-dev-authz", label: "AuthZ, RLS & payments" },
-  { id: "reloop-dev-ship", label: "How I ship" },
-  { id: "reloop-dev-tradeoffs", label: "Key tradeoffs" },
-  { id: "reloop-dev-next", label: "What's next" },
+  { id: "reloop-arch-stack", label: "Tech stack" },
+  { id: "reloop-arch-context", label: "System Context" },
+  { id: "reloop-arch-listing", label: "Listing create & edit" },
+  { id: "reloop-arch-validation", label: "Validation & domain rules" },
+  { id: "reloop-arch-data", label: "Data architecture" },
+  { id: "reloop-arch-schema", label: "Schema evolution & safety" },
+  { id: "reloop-arch-authz", label: "AuthZ, RLS & payments" },
+  { id: "reloop-arch-ship", label: "How I ship" },
+  { id: "reloop-arch-tradeoffs", label: "Key tradeoffs" },
+  { id: "reloop-arch-next", label: "What's next" },
 ];
 
-export const ReLoopDeveloperPage = () => {
+export const ReLoopArchitecture = () => {
   useGoogleAnalytics("G-ZVC52HVG8Q");
   const toc = usePageToc(TOC_ITEMS);
   const location = useLocation();
@@ -41,15 +41,15 @@ export const ReLoopDeveloperPage = () => {
       <Container className="About-header">
         <Helmet>
           <meta charSet="utf-8" />
-          <title> ReLoop Developer News | {meta.title} </title>
+          <title> ReLoop Architecture | {meta.title} </title>
           <meta name="description" content={meta.description} />
         </Helmet>
 
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <PageBreadcrumb trail={trail} current="Developer News" />
+            <PageBreadcrumb trail={trail} current="Architecture" />
             <h1 className="display-4 mb-4" style={{ fontSize: "3.8rem" }}>
-              ReLoop Developer News
+              ReLoop Architecture
             </h1>
             <hr className="t_border my-4 ml-0 text-left" />
           </Col>
@@ -58,10 +58,10 @@ export const ReLoopDeveloperPage = () => {
         <Row className="sec_sp">
           <Col lg="12">
             <p className="reloop-lead">
-              Engineering notes from building ReLoop&apos;s v1 marketplace as the
+              Architecture notes from building ReLoop&apos;s v1 marketplace as the
               sole developer: how I turned vendor listing flows into reliable
-              behavior with Expo, Supabase, centralized validation, Row-Level Security(RLS),
-              and the problems I hit along the way.
+              behavior with Expo, Supabase, centralized validation, Row-Level
+              Security (RLS), and the problems I hit along the way.
             </p>
           </Col>
         </Row>
@@ -70,7 +70,7 @@ export const ReLoopDeveloperPage = () => {
 
         <Row className="page-toc-content-row">
           <Col lg="9">
-            <section id="reloop-dev-stack" className="sec_sp page-toc-section">
+            <section id="reloop-arch-stack" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 Tech stack
               </h3>
@@ -129,7 +129,7 @@ export const ReLoopDeveloperPage = () => {
               </div>
             </section>
 
-            <section id="reloop-dev-context" className="sec_sp page-toc-section">
+            <section id="reloop-arch-context" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 System Context
               </h3>
@@ -158,7 +158,7 @@ export const ReLoopDeveloperPage = () => {
               </ul>
             </section>
 
-            <section id="reloop-dev-listing" className="sec_sp page-toc-section">
+            <section id="reloop-arch-listing" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 Listing create &amp; edit reliability
               </h3>
@@ -186,7 +186,7 @@ export const ReLoopDeveloperPage = () => {
               </ul>
             </section>
 
-            <section id="reloop-dev-validation" className="sec_sp page-toc-section">
+            <section id="reloop-arch-validation" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 Validation &amp; domain rules
               </h3>
@@ -210,7 +210,7 @@ export const ReLoopDeveloperPage = () => {
               </ul>
             </section>
 
-            <section id="reloop-dev-data" className="sec_sp page-toc-section">
+            <section id="reloop-arch-data" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 Data architecture
               </h3>
@@ -247,7 +247,7 @@ export const ReLoopDeveloperPage = () => {
               </ul>
             </section>
 
-            <section id="reloop-dev-schema" className="sec_sp page-toc-section">
+            <section id="reloop-arch-schema" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 Schema evolution &amp; safety
               </h3>
@@ -271,7 +271,7 @@ export const ReLoopDeveloperPage = () => {
               </ul>
             </section>
 
-            <section id="reloop-dev-authz" className="sec_sp page-toc-section">
+            <section id="reloop-arch-authz" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 AuthZ, RLS &amp; payments
               </h3>
@@ -296,7 +296,7 @@ export const ReLoopDeveloperPage = () => {
               </ul>
             </section>
 
-            <section id="reloop-dev-ship" className="sec_sp page-toc-section">
+            <section id="reloop-arch-ship" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 How I ship
               </h3>
@@ -324,7 +324,7 @@ export const ReLoopDeveloperPage = () => {
               </ul>
             </section>
 
-            <section id="reloop-dev-tradeoffs" className="sec_sp page-toc-section">
+            <section id="reloop-arch-tradeoffs" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 Key tradeoffs I chose
               </h3>
@@ -347,7 +347,7 @@ export const ReLoopDeveloperPage = () => {
               </ul>
             </section>
 
-            <section id="reloop-dev-next" className="sec_sp page-toc-section">
+            <section id="reloop-arch-next" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
                 What&apos;s next on my eng board
               </h3>
