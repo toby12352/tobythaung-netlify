@@ -101,7 +101,7 @@ export const Enb = () => {
                   className="ac_btn btn"
                   style={{ fontSize: "1.5rem" }}
                 >
-                  eNotebook Developer News
+                  For Developers
                   <div className="ring one"></div>
                   <div className="ring two"></div>
                   <div className="ring three"></div>

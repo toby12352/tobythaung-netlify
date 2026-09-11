@@ -85,7 +85,7 @@ export const ReLoop = () => {
               className="text_2"
             >
               <div id="button_p" className="ac_btn btn" style={{ fontSize: "1.5rem" }}>
-                Recent Updates
+                Developer News
                 <div className="ring one"></div>
                 <div className="ring two"></div>
                 <div className="ring three"></div>
@@ -488,6 +488,12 @@ export const ReLoop = () => {
               </h3>
               <ul className="reloop2-list">
                 <li>
+                  Commit remaining recurrence and banner DB safeguards – CHECK
+                  constraints, <code>deactivate_expired_listings</code>, banner
+                  grants, and Storage RLS for <code>logo.jpg</code> /{" "}
+                  <code>banner.jpg</code>
+                </li>
+                <li>
                   Onboard first merchant cohort and measure sell-through against
                   the base-case projections
                 </li>
@@ -499,12 +505,8 @@ export const ReLoop = () => {
                   Expand from cover photo to multi-photo listings using the
                   existing <code>listing_images</code> schema
                 </li>
-                <li>
-                  Harden observability with structured error codes and production
-                  logging
-                </li>
               </ul>
-              <p className="reloop2-tagline">ReLoop - Save More. Waste Less.</p>
+              <p className="reloop2-tagline">ReLoop – Save More. Waste Less.</p>
             </section>
           </Col>
 

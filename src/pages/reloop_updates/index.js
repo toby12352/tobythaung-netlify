@@ -11,6 +11,7 @@ import { PageBreadcrumb } from "../../components/page-breadcrumb";
 import { extendNavTrail, readNavTrail } from "../../utils/navTrail";
 
 const TOC_ITEMS = [
+  { id: "reloop-upd-sep10", label: "Sep 10 · Recurring & banners" },
   { id: "reloop-upd-sep6", label: "Sep 6 · Trust & App Store" },
   { id: "reloop-upd-sep5", label: "Sep 5 · UX & pickup" },
   { id: "reloop-upd-sep3", label: "Sep 3 · Account & checkout" },
@@ -30,15 +31,15 @@ export const ReLoopUpdates = () => {
       <Container className="About-header">
         <Helmet>
           <meta charSet="utf-8" />
-          <title> Recent ReLoop Updates | {meta.title} </title>
+          <title> ReLoop Developer News | {meta.title} </title>
           <meta name="description" content={meta.description} />
         </Helmet>
 
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <PageBreadcrumb trail={trail} current="Recent Updates" />
+            <PageBreadcrumb trail={trail} current="Developer News" />
             <h1 className="display-4 mb-4" style={{ fontSize: "3.8rem" }}>
-              Recent ReLoop Updates
+              ReLoop Developer News
             </h1>
             <hr className="t_border my-4 ml-0 text-left" />
           </Col>
@@ -47,7 +48,7 @@ export const ReLoopUpdates = () => {
         <Row className="sec_sp">
           <Col lg="12">
             <p className="reloop-lead">
-              Chronological engineering ship notes from building Reloop v1 -
+              Chronological engineering ship notes from building Reloop v1 –
               what shipped, why it mattered, and what it unlocked.
             </p>
           </Col>
@@ -57,9 +58,130 @@ export const ReLoopUpdates = () => {
 
         <Row className="page-toc-content-row">
           <Col lg="9">
+            <section id="reloop-upd-sep10" className="sec_sp page-toc-section">
+              <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
+                September 10, 2026 – Recurring listings, store banners, cart v2
+                &amp; vendor ops
+              </h3>
+
+              <div className="reloop-stack-group">
+                <h4 className="reloop-h4">
+                  Recurring bags that won&apos;t invent a pickup date
+                </h4>
+                <ul className="reloop-list">
+                  <li>
+                    <b>Problem:</b> Vendors with predictable surplus were
+                    retyping the same listing every week – and a silent
+                    &quot;just make it a one-off&quot; fallback would lie about
+                    when the next bag is actually pickable.
+                  </li>
+                  <li>
+                    <b>Action:</b> I shipped recurring listings on the client (
+                    <code>this_week</code> / weekly + weekday picker). Create,
+                    edit, and reactivate all use recurrence to set the next
+                    pickup date. Validation requires frequency plus at least one
+                    weekday, rejects windows with no upcoming open slot, and
+                    refuses to save without valid recurrence. Reactivate
+                    respects weekdays and the <code>this_week</code>{" "}
+                    until-Sunday bound.
+                  </li>
+                  <li>
+                    <b>Result:</b> Weekly surplus becomes a schedule, not a
+                    copy-paste chore – and the app won&apos;t invent a pickup
+                    day the store can&apos;t honor.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="reloop-stack-group">
+                <h4 className="reloop-h4">
+                  Store banners and a cart that tells the truth
+                </h4>
+                <ul className="reloop-list">
+                  <li>
+                    <b>Problem:</b> Stores looked generic without a hero face,
+                    and carts could keep ghost lines after listings vanished –
+                    especially across accounts and multiple partners.
+                  </li>
+                  <li>
+                    <b>Action:</b> Vendors edit a banner at a fixed{" "}
+                    <code>{"{partnerId}/banner.jpg"}</code> path; customers see
+                    it on the store hero. Cart storage v2 is per-user and
+                    multi-partner, with legacy migration, invalid-line
+                    stripping, rehydrate-against-live-listings, and a banner
+                    when lines were removed. Orders, favorites, and listing
+                    cards got matching polish.
+                  </li>
+                  <li>
+                    <b>Result:</b> The storefront looks intentional, and the
+                    cart admits when the shelf changed instead of
+                    checkout-failing on ghosts.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="reloop-stack-group">
+                <h4 className="reloop-h4">
+                  Vendor home, status buckets, and confirm-pickup that you can
+                  feel
+                </h4>
+                <ul className="reloop-list">
+                  <li>
+                    <b>Problem:</b> Vendor home didn&apos;t push &quot;list
+                    something now,&quot; listings mixed every lifecycle state in
+                    one pile, and pickup confirmation at the counter needed to
+                    be unmistakable without fighting Reduce Motion or
+                    double-taps.
+                  </li>
+                  <li>
+                    <b>Action:</b> I reworked vendor home with a new-listing
+                    quick action, added live / sold out / expired / inactive
+                    filters, and shipped a dedicated confirm-pickup control with
+                    fill/pulse motion plus haptics – blocked while disabled or
+                    loading, and quiet when Reduce Motion is on.
+                  </li>
+                  <li>
+                    <b>Result:</b> Vendors can find what&apos;s sellable,
+                    publish faster, and confirm pickup with one clear,
+                    accessible gesture.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="reloop-stack-group">
+                <h4 className="reloop-h4">
+                  Honest split: client rules now, DB guarantees next
+                </h4>
+                <ul className="reloop-list">
+                  <li>
+                    <b>Problem:</b> Most CHECK constraints, expire/advance RPC,
+                    banner grants, and Storage RLS still live in uncommitted
+                    migration files – shipping UI without saying so would
+                    overclaim security.
+                  </li>
+                  <li>
+                    <b>Action:</b> This push documents the split: client
+                    safeguards ship now; the next commit unlocks
+                    frequency/weekday/<code>until</code> CHECKs,{" "}
+                    <code>deactivate_expired_listings</code> (advance recurring
+                    only when safe; expire one-offs / exhausted{" "}
+                    <code>this_week</code>; service_role only), non-privileged
+                    banner column grants, Storage RLS limited to{" "}
+                    <code>logo.jpg</code> / <code>banner.jpg</code> for
+                    members/owners, and shared weekday/open-window helpers.
+                  </li>
+                  <li>
+                    <b>Result:</b> The product surface matches reality – client
+                    rules hold today; Postgres CHECKs, expire/advance, and
+                    Storage RLS harden when the remaining files land.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
             <section id="reloop-upd-sep6" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
-                September 6, 2026 - Listing reviews, content reports, Place IDs
+                September 6, 2026 – Listing reviews, content reports, Place IDs
                 &amp; App Store polish
               </h3>
 
@@ -69,7 +191,7 @@ export const ReLoopUpdates = () => {
                   <li>
                     <b>Problem:</b> Without a clear post-pickup rating path and a
                     safe way to flag bad content, the marketplace cannot build
-                    trust before App Store review-and staff cannot hide abuse
+                    trust before App Store review – and staff cannot hide abuse
                     without trusting the client.
                   </li>
                   <li>
@@ -78,7 +200,7 @@ export const ReLoopUpdates = () => {
                     <code>rating_count</code> on listings and a rebuilt store
                     rating sheet. Customers can report listings, stores, and
                     picked-up orders (insert/select their own rows only); staff
-                    hide content from the dashboard-no client status updates. SQL
+                    hide content from the dashboard – no client status updates. SQL
                     tests cover both flows, with en/lo copy for report and review
                     UI.
                   </li>
@@ -143,8 +265,9 @@ export const ReLoopUpdates = () => {
                 <ul className="reloop-list">
                   <li>
                     <b>Problem:</b> Icons, schema notes, and checklists were out of
-                    date relative to the report, review, and Apple-revoke work-and
-                    i18n/maps regressions could slip without shared tests in CI.
+                    date relative to the report, review, and Apple-revoke
+                    work – and i18n/maps regressions could slip without shared
+                    tests in CI.
                   </li>
                   <li>
                     <b>Action:</b> I replaced mobile and web icons with the Reloop
@@ -163,13 +286,13 @@ export const ReLoopUpdates = () => {
 
             <section id="reloop-upd-sep5" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
-                September 5, 2026 - Themed dialogs, haptics, cart motion &amp;
+                September 5, 2026 – Themed dialogs, haptics, cart motion &amp;
                 vendor pickup polish
               </h3>
               <ul className="reloop-list">
                 <li>
                   <b>Problem:</b> Native alerts and flat order detail screens made
-                  the app feel unfinished-especially on the vendor side, where
+                  the app feel unfinished – especially on the vendor side, where
                   pickup confirmation needs to be fast and unmistakable at the
                   counter.
                 </li>
@@ -183,15 +306,15 @@ export const ReLoopUpdates = () => {
                 </li>
                 <li>
                   <b>Result:</b> Customer and vendor flows feel like one product
-                  system-feedback, motion, and pickup confirmation reinforce the
-                  same pickup-first loop.
+                  system – feedback, motion, and pickup confirmation reinforce
+                  the same pickup-first loop.
                 </li>
               </ul>
             </section>
 
             <section id="reloop-upd-sep3" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
-                September 3, 2026 - Profile settings, in-app legal pages &amp;
+                September 3, 2026 – Profile settings, in-app legal pages &amp;
                 delete-account
               </h3>
 
@@ -216,7 +339,7 @@ export const ReLoopUpdates = () => {
                   <li>
                     <b>Result:</b> Customers manage account and legal context
                     without leaving Reloop, and account deletion is a controlled
-                    server action-not a client-only wipe.
+                    server action – not a client-only wipe.
                   </li>
                 </ul>
               </div>
@@ -228,7 +351,7 @@ export const ReLoopUpdates = () => {
                 <ul className="reloop-list">
                   <li>
                     <b>Problem:</b> The customer order loop was incomplete without
-                    checkout, receipt, and a scannable pickup path-and payment
+                    checkout, receipt, and a scannable pickup path – and payment
                     expire, listing, and notification RLS needed hardening before
                     production builds.
                   </li>
@@ -249,15 +372,15 @@ export const ReLoopUpdates = () => {
 
             <section id="reloop-upd-sep2" className="sec_sp page-toc-section">
               <h3 className="color_sec py-4 reloop-h3" style={{ fontSize: "2rem" }}>
-                September 2, 2026 - Production readiness (Phases A–C), CI &amp;
+                September 2, 2026 – Production readiness (Phases A–C), CI &amp;
                 Realtime
               </h3>
               <ul className="reloop-list">
                 <li>
                   <b>Problem:</b> Auth hydration, stale order state, unpaid pending
                   orders, and missing observability made &quot;almost
-                  production&quot; risky-and mobile lint debt blocked a clean React
-                  Compiler-friendly main.
+                  production&quot; risky – and mobile lint debt blocked a clean
+                  React Compiler-friendly main.
                 </li>
                 <li>
                   <b>Action:</b> I shipped auth bootstrap with React Query

@@ -76,7 +76,7 @@ export const ReLoopArchitecture = () => {
               </h3>
               <p className="reloop-stack-intro">
                 One Expo app for customers and vendors, Supabase as the backend,
-                and Laos bank payments-no custom app servers.
+                and Laos bank payments – no custom app servers.
               </p>
 
               <div className="reloop-stack-group">
@@ -353,19 +353,25 @@ export const ReLoopArchitecture = () => {
               </h3>
               <ul className="reloop-list">
                 <li>
-                  <b>Problem:</b> As merchants go live, edge cases around time
-                  windows, storage policies, and last-bag oversell get more
-                  expensive.
+                  <b>Problem:</b> Recurring listings and store banners are live in
+                  the client, but the hard Postgres CHECKs, expire/advance job,
+                  banner grants, and Storage RLS still sit in uncommitted
+                  migrations – and last-bag oversell remains an edge case at
+                  density.
                 </li>
                 <li>
-                  <b>Action:</b> Next up for me: unit tests for validation
-                  boundaries, tighter <code>listing_images</code> storage/RLS,
-                  inventory reservation via a Postgres RPC, multi-photo UX, and
-                  structured error codes from <code>listing.ts</code>.
+                  <b>Action:</b> Next on my board: land the recurrence and banner
+                  DB safeguards (<code>deactivate_expired_listings</code>,
+                  frequency/weekday/<code>until</code> CHECKs, partner banner
+                  grants, <code>logo.jpg</code> / <code>banner.jpg</code> Storage
+                  RLS), then inventory reservation via a Postgres RPC,
+                  multi-photo UX on <code>listing_images</code>, and structured
+                  error codes from <code>listing.ts</code>.
                 </li>
                 <li>
-                  <b>Result:</b> The foundation already supports those upgrades - I
-                  harden the same paths instead of reinventing them.
+                  <b>Result:</b> Client honesty already ships; the next commit
+                  hardens the same paths in the database instead of reinventing
+                  them.
                 </li>
               </ul>
             </section>
