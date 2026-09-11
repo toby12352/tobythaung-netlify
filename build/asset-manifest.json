@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.15cb858d.css",
-    "main.js": "/static/js/main.5793a525.js",
+    "main.css": "/static/css/main.c65a120b.css",
+    "main.js": "/static/js/main.a439b5f5.js",
+    "static/media/Reloop Logo.png": "/static/media/Reloop Logo.937980bfa35ec3686a21.png",
     "static/media/analysis.png": "/static/media/analysis.547bfd6c0623fe703bf4.png",
     "static/media/Diagram 1 System Context (top-level architecture).png": "/static/media/Diagram 1 System Context (top-level architecture).bde6f9043ad4a0e0041d.png",
     "static/media/Diagram 2 Chat Streaming + Tool Orchestration (core AI tutor flow).png": "/static/media/Diagram 2 Chat Streaming + Tool Orchestration (core AI tutor flow).c4cc4418cdadf5070e89.png",
@@ -11,11 +12,10 @@
     "static/media/9) Development process stages (from domain  ship safely).png": "/static/media/9) Development process stages (from domain  ship safely).bf28a652c86116c7f27e.png",
     "static/media/6) Workflow-to-tables diagram (listing publishing).png": "/static/media/6) Workflow-to-tables diagram (listing publishing).4bb70f9dccc20e76ef5a.png",
     "static/media/eNotebook Logo.png": "/static/media/eNotebook Logo.cbf702619782e6b1b97f.png",
-    "static/media/Reloop Logo.png": "/static/media/Reloop Logo.6cfec4347c339fa58a92.png",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.15cb858d.css",
-    "static/js/main.5793a525.js"
+    "static/css/main.c65a120b.css",
+    "static/js/main.a439b5f5.js"
   ]
 }
