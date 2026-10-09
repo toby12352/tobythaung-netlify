@@ -11,6 +11,7 @@ import { ReLoopArchitecture } from "../pages/reloop_architecture";
 import { ReLoopUpdates } from "../pages/reloop_updates";
 import { Enb } from "../pages/enb";
 import { EnbDeveloperPage } from "../pages/enb-developer-page";
+import { Resume } from "../pages/resume";
 import { Socialicons } from "../components/socialicons";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
@@ -29,6 +30,7 @@ const AnimatedRoutes = withRouter(({ location }) => {
         return 1;
       case "/reloop":
       case "/enb":
+      case "/resume":
       case "/work-timeline":
         return 2;
       case "/reloop-architecture":
@@ -84,6 +86,7 @@ const AnimatedRoutes = withRouter(({ location }) => {
           />
           <Route path="/enb" element={<Enb />} />
           <Route path="/enb-developer-page" element={<EnbDeveloperPage />} />
+          <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="*" element={<Home />} />
         </Routes>
